@@ -1,0 +1,51 @@
+{
+  "name": "hh-hw-js-ajax",
+  "description": "Корняков С.В.",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0 --fix",
+    "style-lint": "stylelint **/*.{css,less} --max-warnings 0 --fix",
+    "preview": "vite preview",
+    "postinstall": "husky install",
+    "predeploy": "yarn run build",
+    "chto-nibud": "gh-pages -d dist"
+  },
+  "devDependencies": {
+    "@babel/core": "7.21.4",
+    "@hh.ru/eslint-config": "^15.1.1",
+    "@hh.ru/eslint-plugin-import-rules": "^1.5.2",
+    "@hh.ru/stylelint-config-hh": "^10.2.1",
+    "@typescript-eslint/eslint-plugin": "5.51.0",
+    "@typescript-eslint/parser": "5.51.0",
+    "eslint": "7.32.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-dollar-sign": "^1.0.2",
+    "eslint-plugin-etc": "^2.0.3",
+    "eslint-plugin-import": "^2.29.0",
+    "eslint-plugin-prettier": "4.2.1",
+    "gh-pages": "^6.1.0",
+    "husky": "^8.0.0",
+    "less": "^4.2.0",
+    "lint-staged": "^15.1.0",
+    "postcss": "^8.4.31",
+    "postcss-less": "^6.0.0",
+    "prettier": "^2.8.7",
+    "stylelint": "^15.11.0",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-less": "^2.0.0",
+    "stylelint-order": "^6.0.3",
+    "stylelint-prettier": "^4.0.2",
+    "stylelint-scss": "^5.3.1",
+    "typescript": "4.9.5",
+    "vite": "^5.0.0"
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": "yarn lint",
+    "*.{css,less}": "yarn style-lint"
+  },
+  "packageManager": "yarn@4.0.2"
+}

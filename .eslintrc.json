@@ -1,0 +1,42 @@
+{
+  "root": true,
+  "env": { "browser": true, "es2020": true },
+  "extends": ["prettier"],
+  "plugins": ["prettier"],
+  "parserOptions": {
+    "parser": "@babel/eslint-parser",
+    "requireConfigFile": false,
+    "sourceType": "module"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["@hh.ru/eslint-config/typescript", "prettier"],
+      "excludedFiles": "vite.config.ts",
+      "rules": {
+        "prettier/prettier": [
+          "error",
+          {
+            "semi": true,
+            "trailingComma": "all",
+            "singleQuote": true,
+            "bracketSpacing": true,
+            "bracketSameLine": false,
+            "tabWidth": 2,
+            "arrowParens": "always",
+            "endOfLine": "auto"
+          }
+        ],
+        "@typescript-eslint/explicit-module-boundary-types": 0,
+        "@typescript-eslint/no-non-null-assertion": 0,
+        "import/extensions": 0,
+        "import/no-unresolved": 0,
+        "spaced-comment": 0
+      }
+    }
+  ],
+  "rules": {
+    "@hh.ru/import-rules/hh-import-order": 0
+  },
+  "ignorePatterns": ["dist", ".eslintrc.cjs"]
+}

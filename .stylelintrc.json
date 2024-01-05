@@ -1,0 +1,14 @@
+{
+  "extends": ["@hh.ru/stylelint-config-hh", "stylelint-config-prettier"],
+  "plugins": ["stylelint-prettier", "stylelint-less"],
+  "customSyntax": "postcss-less",
+  "rules": {
+    "hhru/less-variable-value-disallowed-list": null,
+    "selector-nested-pattern": null,
+    "color-named": null,
+    "selector-max-universal": null,
+    "declaration-property-value-allowed-list": null,
+    "declaration-property-value-disallowed-list": null,
+    "keyframes-name-pattern": null
+  }
+}
