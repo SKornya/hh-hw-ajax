@@ -65,8 +65,8 @@ const renderAnimeInfo = (anime: Anime): void => {
   header.textContent = anime.title;
   poster.setAttribute('src', anime.images.webp.image_url);
   genres.textContent = anime.genres.map((genre) => genre.name).join(', ');
-  synopsis.textContent = anime.synopsis;
-  score.textContent = `${anime.score}`;
+  synopsis.textContent = anime.synopsis ? anime.synopsis : 'Check MAL';
+  score.textContent = anime.score ? `${anime.score}` : 'Not enough rates';
   url.setAttribute('href', anime.url);
 
   output.classList.add('show');
