@@ -105,6 +105,8 @@ input.addEventListener('input', (event) => {
 
     timeout = setTimeout(async () => {
       suggest.innerHTML = '';
+      suggest.classList.remove('active');
+
       let animeList = [] as Anime[];
 
       try {
