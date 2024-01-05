@@ -2,5 +2,5 @@ import { defineConfig } from "vite";
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: "/hh-hw-js-ajax",
+  base: "/hh-hw-ajax",
 });
