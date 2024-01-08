@@ -6,6 +6,18 @@ import {
 
 import './index.less';
 
+const debounceFunction = (func: unknown, delay: number) => {
+  let timeout: number;
+  return function (...args: unknown[]) {
+    clearTimeout(timeout);
+    timeout = setTimeout(() => {
+      if (func instanceof Function) {
+        func(...args);
+      }
+    }, delay);
+  };
+};
+
 const input = document.querySelector('#search__input') as HTMLInputElement;
 const suggest = document.querySelector('.suggest') as HTMLDivElement;
 const output = document.querySelector('.output') as HTMLDivElement;
@@ -95,53 +107,49 @@ const renderAside = (): void => {
   aside.classList.add('show');
 };
 
-let timeout: number;
-
-input.addEventListener('input', (event) => {
+const inputHandler = async (event: Event) => {
   event.preventDefault();
 
   if (input.value) {
-    clearTimeout(timeout);
+    suggest.innerHTML = '';
+    suggest.classList.remove('active');
 
-    timeout = setTimeout(async () => {
-      suggest.innerHTML = '';
-      suggest.classList.remove('active');
+    let animeList = [] as Anime[];
 
-      let animeList = [] as Anime[];
+    try {
+      const animes = await getData(input.value);
+      console.log(animes);
+      animeList = animes.data;
+      saveDataInLocalStorage('animes', animeList);
+      suggestListFill(animeList);
+    } catch (error) {
+      console.log(error);
 
-      try {
-        const animes = await getData(input.value);
-        console.log(animes);
-        animeList = animes.data;
-        saveDataInLocalStorage('animes', animeList);
-        suggestListFill(animeList);
-      } catch (error) {
-        console.log(error);
+      const div = document.createElement('div');
+      div.classList.add('suggest__item');
 
-        const div = document.createElement('div');
-        div.classList.add('suggest__item');
-
-        if (
-          typeof error === 'object' &&
-          error !== null &&
-          'status' in error &&
-          'message' in error
-        ) {
-          div.textContent = `Error ${error.status as number}. 
-            ${error.message as string}`;
-        } else {
-          div.textContent = `${error as string}`;
-        }
-
-        suggest.append(div);
-        suggest.classList.add('active');
+      if (
+        typeof error === 'object' &&
+        error !== null &&
+        'status' in error &&
+        'message' in error
+      ) {
+        div.textContent = `Error ${error.status as number}. 
+          ${error.message as string}`;
+      } else {
+        div.textContent = `${error as string}`;
       }
-    }, 300);
+
+      suggest.append(div);
+      suggest.classList.add('active');
+    }
   } else {
     suggest.innerHTML = '';
     suggest.classList.remove('active');
   }
-});
+};
+
+input.addEventListener('input', debounceFunction(inputHandler, 1100));
 
 suggest.addEventListener('click', (event) => {
   if (
