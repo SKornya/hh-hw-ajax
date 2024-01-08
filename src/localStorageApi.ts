@@ -4,7 +4,7 @@ const saveDataInLocalStorage = (key: string, data: unknown[]): void => {
   try {
     localStorage.setItem(key, JSON.stringify(data));
   } catch (error) {
-    localStorage.clear();
+    localStorage.removeItem(key);
   }
 };
 
