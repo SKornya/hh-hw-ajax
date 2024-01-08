@@ -1,13 +1,22 @@
 import { Anime } from './api';
 
 const saveDataInLocalStorage = (key: string, data: unknown[]): void => {
-  localStorage.setItem(key, JSON.stringify(data));
+  try {
+    localStorage.setItem(key, JSON.stringify(data));
+  } catch (error) {
+    localStorage.clear();
+  }
 };
 
 const getDataFromLocalStorage = (title: string) => {
-  if (localStorage.getItem(title) !== null) {
-    const data = JSON.parse(localStorage.getItem(title) as string) as Anime[];
-    return data;
+  const storageData = localStorage.getItem(title);
+  if (storageData !== null) {
+    try {
+      const data = JSON.parse(storageData) as Anime[];
+      return data;
+    } catch (error) {
+      return [];
+    }
   }
   return [];
 };
