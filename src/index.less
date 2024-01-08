@@ -1,0 +1,168 @@
+@bg-color: hsl(195, 53%, 98%);
+@blocks-border: 1px solid hsl(195, 53%, 79%);
+
+* {
+  box-sizing: border-box;
+
+  font-family: Montserrat, sans-serif;
+  font-weight: normal;
+  font-size: 16px;
+}
+
+body {
+  height: 100%;
+  background-color: #fff;
+
+  display: flex;
+  justify-content: center;
+}
+
+.root {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  width: 450px;
+}
+
+.logo {
+  padding: 20px;
+
+  &__image {
+    display: block;
+    margin: 0 auto;
+    max-width: 150px;
+    border-radius: 50%;
+    border: @blocks-border;
+  }
+}
+
+.search {
+  &__label {
+    display: none;
+  }
+
+  &__input {
+    display: block;
+    width: 100%;
+    height: 32px;
+    border-radius: 20px;
+    border: @blocks-border;
+    background-color: @bg-color;
+  
+    padding: 20px 30px;
+  
+    font-size: 16px;
+
+    &:focus, &:active {
+      outline: 0;
+    }
+  }
+}
+
+.suggest {
+  display: none;
+  margin-top: 10px;
+  padding: 20px 0;
+  width: 100%;
+
+  border: @blocks-border;
+  background-color: @bg-color;
+  border-radius: 20px;
+
+  font-weight: normal;
+
+  &.active {
+    display: block;
+  }
+
+  &__item {
+    padding: 5px 30px;
+
+    &:hover {
+      background-color: hsl(195, 53%, 79%);
+    }
+
+    &_visited {
+      color: hsl(300, 100%, 25%);
+    }
+  }
+
+}
+
+.output {
+  display: none;
+  border: @blocks-border;
+  background-color: hsl(195, 53%, 98%);
+
+  border-radius: 20px;
+  margin-top: 10px;
+
+  &.show {
+    display: block;
+  }
+
+  &__header {
+    text-align: center;
+    font-size: 24px;
+  }
+
+  &__poster .poster-logo {
+    border-radius: 10px;
+    width: 200px;
+    margin: 0 5px;
+  }
+
+  &__genres, &__score, &__url {
+    margin-bottom: 10px;    
+  }
+
+  &__genres .genres-header,
+  &__score .score-header,
+  &__url .url-header,
+  &__synopsys .synopsys-header {
+    font-weight: bold;
+  }
+
+  &__synopsys {
+    margin: 10px 5px;
+    text-align: justify;
+    line-height: 1.5;
+  }
+}
+
+.flex-wrapper {
+  display: flex;
+}
+
+.info-container {
+  margin: 0 5px;
+}
+
+.last-searches {
+  display: none;
+  position: absolute;
+  margin-top: 20px;
+  padding: 0 10px;
+  left: 500px;
+
+  border: @blocks-border;
+  border-radius: 20px;
+
+  background-color: hsl(195, 53%, 98%);
+
+  width: 300px;
+
+  &.show {
+    display: block;
+  }
+
+  &__header {
+    font-size: 24px;
+  }
+
+  &__item {
+    padding-bottom: 10px;
+  }
+}
